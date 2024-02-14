@@ -160,7 +160,11 @@
 
             var printWindow = window.open(url, '', 'height=1000,width=1000');
             printWindow.print();
-        }
+
+            printWindow.onafterprint = function () {
+                printWindow.close();
+            };
+        };
 
 
 
