@@ -156,25 +156,10 @@
         }
 
         function quickPrint() {
+            var url = '@Url.Action("PrintInvoice", "Print")' + '?id=' + @Model.Invoice.Id;
 
-            $.ajax({
-                type: 'POST',
-                url: "@Url.Action("InvoiceToPdf", "Print")",
-                data: {
-                    id: '@Model.Invoice.Id'
-                },
-                success: function (data) {
-                    var printWindow = window.open('@Url.Action("DownloadInvoicePdf", "Print")' + '?fileGuid=' + data.FileGuid + '&fileName' + data.FileName, '', 'height=1000,width=1000,margin-top=50,margin-left=100');
-                    printWindow.print();
-                    
-                },
-                error: function (data) {
-                alert(data.Message);
-                },
-                    dataType: 'json',
-                    cache: false
-            });
-
+            var printWindow = window.open(url, '', 'height=1000,width=1000');
+            printWindow.print();
         }
 
 
